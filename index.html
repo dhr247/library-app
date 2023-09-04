@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <script src="https://kit.fontawesome.com/702da3b9d8.js" crossorigin="anonymous"></script>
+    <title>Library Records App</title>
+</head>
+<body>
+    <div class="container m-6">
+        <h1 class="is-size-1 has-text-centered"><i class="fas fa-book-open has-text-primary"></i>&nbsp;&nbsp;Library Records</h1>
+        <!-- Tabs -->
+        <div class="tabs is-boxed mt-6">
+            <!-- Tab Headings -->
+            <ul>
+                <li class="is-active"><a href="#tab1">Administrative</a></li>
+                <li><a href="#tab2">Members</a></li>
+            </ul>
+        </div>
+        <!-- Tab Content -->
+        <div id="tab1" class="tab-content" style="display: block;">
+            <!-- Books Area -->
+            <div>
+                <h3 class="is-size-3 has-text-centered">Books</h3>
+                <!-- Book Cards -->
+                <div id="book-cards" class="columns is-multiline">
+                    <!-- <div class="column is-one-quarter">
+                        <div class="card">
+                            <p class="card-content is-size-4 has-text-weight-bold">Harry Potter and the Prisoner of Azhkaban</p>
+                            <p class="card-content">J.K. Rowling</p>
+                            <p class="card-content">2003</p>
+                            <p class="card-content">9876</p>
+                            <div class="has-text-centered">
+                                <input type="submit" value="Delete Book" class="button is-danger mb-5">
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                <!-- Add Books Form -->
+                <form id="book-form">
+                    <div class="field">
+                        <div class="control">
+                            <input type="text" id="title" class="input" placeholder="Enter Title">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input type="text" id="author" class="input" placeholder="Enter Author">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input type="number" id="year" class="input" placeholder="Enter Year">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input type="number" id="id" class="input" placeholder="Enter ID">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input type="submit" value="Add Book" id="add-book" class="button is-primary is-fullwidth">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <hr>
+            <!-- Members Area -->
+            <div class="mt-6">
+                <h3 class="is-size-3 has-text-centered">Members</h3>
+                <!-- Members Table -->
+                <table class="table is-striped mt-5 is-fullwidth">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>MemberShip Number</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="member-list"></tbody>
+                </table>
+                <!-- Add Members Form -->
+                <form id="member-form">
+                    <div class="field">
+                        <div class="control">
+                            <input type="text" id="name" class="input" placeholder="Enter Member Name">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input type="number" id="membershipNumber" placeholder="Enter Membership Number" class="input">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input type="submit" value="Add Member" id="add-member" class="button is-primary is-fullwidth">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="tab2" class="tab-content" style="display: none;">
+            <!-- Book Search -->
+            <form id="book-search">
+                <div class="field">
+                    <div class="control">
+                        <input type="text" id="bookSearch" class="input" placeholder="Search for Books">
+                    </div>
+                </div>
+            </form>
+            <!-- Book Cards -->
+            <div id="book-cards-2" class="columns is-multiline">
+                <!-- <div class="column is-one-quarter">
+                    <div class="card">
+                        <p class="card-content is-size-4 has-text-weight-bold">Harry Potter and the Prisoner of Azhkaban</p>
+                        <p class="card-content x">J.K. Rowling</p>
+                        <p class="card-content y">2003</p>
+                        <p class="card-content z">9876</p>
+                        <hr>
+                        <form id="book-rent">
+                            <div class="columns">
+                                <div class="column field">
+                                    <label class="label has-text-centered">Rent this Book</label>
+                                    <div class="p-3">
+                                        <input type="number" id="rentMembershipNumber" class="input" placeholder="Enter Membership Number">
+                                    </div>
+                                    <div class="p-3">
+                                        <input type="submit" id="rentMembershipNumberSubmit" class="button is-primary is-fullwidth">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div> -->
+            </div>
+            <!-- Rent Records Table -->
+            <div>
+                <table class="table is-striped is-fullwidth">
+                    <thead>
+                        <tr>
+                            <th>Membership Number</th>
+                            <th>Book Name</th>
+                            <th>Book Author</th>
+                            <th>Book Year</th>
+                            <th>Book ID</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="records-list"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
