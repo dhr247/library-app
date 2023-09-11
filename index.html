@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <title>Library Records App</title>
+</head>
+<body>
+    <div class="container" id="app">
+        <!-- Heading -->
+        <h1 class="is-size-1 mt-6 has-text-centered">Library Records</h1>
+        <!-- Notification -->
+        <div class="Notification mt-6" v-if="notification">{{ notification }}</div>
+        <!-- Tabs -->
+        <div class="tabs is-boxed is-size-4 mt-6">
+            <ul>
+                <li :class="{ 'is-active': activeTab === 'books' }" @click="activateTab('books')"><a>Books</a></li>
+                <li :class="{ 'is-active': activeTab === 'members' }" @click="activateTab('members')"><a>Members</a></li>
+            </ul>
+        </div>
+        <!-- Books Tab -->
+        <div v-if="activeTab === 'books'" class="has-text-centered">
+            <!-- Search -->
+            <div class="search-bar mt-6">
+                <input type="text" class="input" v-model="searchQuery" placeholder="Search books...">
+            </div>
+            <!-- Display Books -->
+            <div class="columns mt-6">
+                <book-card
+                    v-for="(book, index) in filteredBooks"
+                    :key="index"
+                    :book="book"
+                    :disabled="book.isRented"
+                    :members="members"
+                    @delete-book="deleteBook(index)">
+                </book-card>
+            </div>
+            <!-- Button to toggle the "add-book-form" -->
+            <button
+                class="button is-primary my-4"
+                @click="toggleAddBookForm"
+                v-if="!showAddBookForm">
+                Add a Book
+            </button>
+            <!-- add-book-form -->
+            <div v-if="showAddBookForm">
+                <add-book-form @add-book="addBook"></add-book-form>
+            </div>
+        </div>
+        <!-- Members Tab -->
+        <div v-else-if="activeTab === 'members'" class="has-text-centered">
+            <!-- Members Table -->
+            <table class="table is-fullwidth">
+                <thead>
+                    <tr>
+                        <th class="has-text-centered">Name</th>
+                        <th class="has-text-centered">Member ID (4-digit number)</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(member, index) in members" :key="index">
+                        <td>{{ member.name }}</td>
+                        <td>{{ member.id }}</td>
+                        <td>
+                            <button class="button is-danger" @click="deleteMember(index)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Button to toggle the "add-member-form" -->
+            <button
+                class="button is-primary my-4"
+                @click="toggleAddMemberForm"
+                v-if="!showAddMemberForm">
+                Add a Member
+            </button>
+            <!-- add-member-form -->
+            <div v-if="showAddMemberForm">
+                <add-member-form @add-member="addMember"></add-member-form>
+            </div>
+
+        </div>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>
